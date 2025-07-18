@@ -6,7 +6,21 @@
 </head>
 <body>
     <h1>Liste des corrections</h1>
-    <a href="index.php?action=createForm">Ajouter une correction</a>
+
+    <p>
+        <a href="index.php?action=createForm">Ajouter une correction (utiliser les données existantes dans la base)</a> |
+        <a href="/projet/correction_examens/views/correction/ajouter_manuellement.php">Ajouter une correction manuellement</a> |
+        <a href="/projet/correction_examens/views/professeur/index.php?action=listProfesseurs">Liste des professeurs</a> |
+        <a href="/projet/correction_examens/views/examen/index.php?action=index">Liste des examens</a> |
+        <a href="/projet/correction_examens/views/epreuve/index.php?action=index">Liste des épreuves</a> |
+        <a href="/projet/correction_examens/views/etablissement/index.php?action=index">Liste des établissements</a>
+    </p>
+
+    <p>
+        <strong>Note :</strong> "Ajouter une correction" vous permet de sélectionner des données déjà présentes dans la base (professeurs, examens, épreuves).<br>
+        "Ajouter une correction manuellement" vous permet de saisir toutes les informations à la main, utile si les données n'existent pas encore dans la base.
+    </p>
+
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>

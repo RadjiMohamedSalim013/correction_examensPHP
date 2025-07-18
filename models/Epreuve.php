@@ -41,4 +41,20 @@ class Epreuve
         $stmt = $this->pdo->prepare("DELETE FROM epreuve WHERE id_epreuve = ?");
         return $stmt->execute([$id_epreuve]);
     }
+
+    public function getOrCreate($nom_epreuve, $type_epreuve, $code_exam)
+{
+    $stmt = $this->pdo->prepare("SELECT id_epreuve FROM epreuve WHERE nom_epreuve = ? AND type_epreuve = ? AND code_exam = ?");
+    $stmt->execute([$nom_epreuve, $type_epreuve, $code_exam]);
+    $epreuve = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($epreuve) {
+        return $epreuve['id_epreuve'];
+    } else {
+        $insert = $this->pdo->prepare("INSERT INTO epreuve (nom_epreuve, type_epreuve, code_exam) VALUES (?, ?, ?)");
+        $insert->execute([$nom_epreuve, $type_epreuve, $code_exam]);
+        return $this->pdo->lastInsertId();
+    }
+}
+
 }

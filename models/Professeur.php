@@ -86,4 +86,21 @@ class Professeur {
         }
         return false;
     }
+
+
+    public function getOrCreate($nom, $prenom, $grade, $code_etablissement)
+    {
+        $stmt = $this->conn->prepare("SELECT matricule FROM professeur WHERE nom = ? AND prenom = ? AND grade = ? AND code_etablissement = ?");
+        $stmt->execute([$nom, $prenom, $grade, $code_etablissement]);
+        $prof = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($prof) {
+            return $prof['matricule'];
+        } else {
+            $insert = $this->conn->prepare("INSERT INTO professeur (nom, prenom, grade, code_etablissement) VALUES (?, ?, ?, ?)");
+            $insert->execute([$nom, $prenom, $grade, $code_etablissement]);
+            return $this->conn->lastInsertId();
+        }
+    }
+
 }
