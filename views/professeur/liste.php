@@ -13,6 +13,7 @@
 
 <h1>Liste des professeurs</h1>
 
+<a href="index.php?action=createFormProfesseur">Ajouter un professeur</a>
 
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
