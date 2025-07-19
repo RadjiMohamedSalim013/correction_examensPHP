@@ -98,13 +98,13 @@ class Correction
 
 public function createWithFullData($data)
 {
-    // 1. Créer ou récupérer l'établissement
+    // Créer ou récupérer l'établissement
     $id_etab = $this->etablissementModel->getOrCreate(
         $data['nom_etablissement'],
         $data['ville_etablissement']
     );
 
-    // 2. Créer ou récupérer le professeur
+    //  Créer ou récupérer le professeur
     $matricule = $this->professeurModel->getOrCreate(
         $data['nom_prof'],
         $data['prenom_prof'],

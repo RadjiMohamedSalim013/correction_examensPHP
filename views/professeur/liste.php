@@ -1,50 +1,50 @@
-<?php
-// views/professeur/index.php
-// Affiche la liste des professeurs
-?>
+<?php include __DIR__ . '/../../includes/header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste des professeurs</title>
-</head>
-<body>
+<div class="container mt-4">
+    <h1 class="h3 mb-4">Liste des professeurs</h1>
 
-<h1>Liste des professeurs</h1>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        <a href="index.php?action=createFormProfesseur" class="btn btn-primary btn-sm">
+            Ajouter un professeur
+        </a>
+    </div>
 
-<a href="index.php?action=createFormProfesseur">Ajouter un professeur</a>
-
-<table border="1" cellpadding="8" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Matricule</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Grade</th>
-            <th>Code établissement</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($professeurs)) : ?>
-            <?php foreach ($professeurs as $prof) : ?>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-custom">
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars($prof['matricule']) ?></td>
-                    <td><?= htmlspecialchars($prof['nom']) ?></td>
-                    <td><?= htmlspecialchars($prof['prenom']) ?></td>
-                    <td><?= htmlspecialchars($prof['grade']) ?></td>
-                    <td><?= htmlspecialchars($prof['code_etablissement']) ?></td>
-                    <td>
-                        <a href="index.php?action=editFormProfesseur&matricule=<?= $prof['matricule'] ?>">Modifier</a>
-                    </td>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Grade</th>
+                    <th>Code établissement</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <tr><td colspan="6">Aucun professeur trouvé.</td></tr>
-        <?php endif; ?>
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                <?php if (!empty($professeurs) && is_array($professeurs)): ?>
+                    <?php foreach ($professeurs as $prof): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($prof['matricule']) ?></td>
+                        <td><?= htmlspecialchars($prof['nom']) ?></td>
+                        <td><?= htmlspecialchars($prof['prenom']) ?></td>
+                        <td><?= htmlspecialchars($prof['grade']) ?></td>
+                        <td><?= htmlspecialchars($prof['code_etablissement']) ?></td>
+                        <td>
+                            <a href="index.php?action=editFormProfesseur&matricule=<?= $prof['matricule'] ?>" class="btn btn-sm btn-outline-primary action-btn">Modifier</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="text-center">Aucun professeur trouvé.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<?php include __DIR__ . '/../../includes/footer.php'; ?>

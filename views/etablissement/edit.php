@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un établissement</title>
-</head>
-<body>
-    <h1>Modifier l'établissement</h1>
+<?php include __DIR__ . '/../../includes/header.php'; ?>
 
-    <form method="post" action="index.php?action=update&code_etablissement=<?= htmlspecialchars($etablissement['code_etablissement']) ?>">
-        <label for="code_etablissement">Code établissement :</label><br>
-        <input type="text" id="code_etablissement" name="code_etablissement" value="<?= htmlspecialchars($etablissement['code_etablissement']) ?>" readonly><br><br>
+<div class="container mt-4">
+    <h1 class="h3 mb-4">Modifier un établissement</h1>
 
-        <label for="nom_etablissement">Nom établissement :</label><br>
-        <input type="text" id="nom_etablissement" name="nom_etablissement" value="<?= htmlspecialchars($etablissement['nom_etablissement']) ?>" required><br><br>
+    <form method="post" action="index.php?action=update&code_etablissement=<?= htmlspecialchars($etablissement['code_etablissement']) ?>" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="code_etablissement" class="form-label">Code établissement :</label>
+            <input type="text" id="code_etablissement" name="code_etablissement" value="<?= htmlspecialchars($etablissement['code_etablissement']) ?>" readonly class="form-control">
+        </div>
 
-        <label for="ville">Ville :</label><br>
-        <input type="text" id="ville" name="ville" value="<?= htmlspecialchars($etablissement['ville']) ?>" required><br><br>
+        <div class="mb-3">
+            <label for="nom_etablissement" class="form-label">Nom établissement :</label>
+            <input type="text" id="nom_etablissement" name="nom_etablissement" value="<?= htmlspecialchars($etablissement['nom_etablissement']) ?>" required class="form-control">
+        </div>
 
-        <button type="submit">Mettre à jour</button>
+        <div class="mb-3">
+            <label for="ville" class="form-label">Ville :</label>
+            <input type="text" id="ville" name="ville" value="<?= htmlspecialchars($etablissement['ville']) ?>" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
     </form>
 
-    <p><a href="index.php">Retour à la liste</a></p>
-</body>
-</html>
+    <p class="mt-3"><a href="index.php" class="btn btn-secondary">Retour à la liste</a></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<?php include __DIR__ . '/../../includes/footer.php'; ?>

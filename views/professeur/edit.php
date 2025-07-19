@@ -1,43 +1,47 @@
-<?php
-?>
+<?php include __DIR__ . '/../../includes/header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un Professeur</title>
-</head>
-<body>
+<div class="container mt-4">
+    <h1 class="h3 mb-4">Modifier un Professeur</h1>
 
-    <h1>Modifier un Professeur</h1>
+    <form action="index.php?action=updateProfesseur&matricule=<?= htmlspecialchars($professeur['matricule']) ?>" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="matricule" class="form-label">Matricule :</label>
+            <input type="text" id="matricule" name="matricule" value="<?= htmlspecialchars($professeur['matricule']) ?>" disabled class="form-control">
+        </div>
 
-    <form action="index.php?action=updateProfesseur&matricule=<?= htmlspecialchars($professeur['matricule']) ?>" method="post">
-        <label for="matricule">Matricule :</label><br>
-        <input type="text" id="matricule" name="matricule" value="<?= htmlspecialchars($professeur['matricule']) ?>" disabled><br><br>
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom :</label>
+            <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($professeur['nom']) ?>" required class="form-control">
+        </div>
 
-        <label for="nom">Nom :</label><br>
-        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($professeur['nom']) ?>" required><br><br>
+        <div class="mb-3">
+            <label for="prenom" class="form-label">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($professeur['prenom']) ?>" required class="form-control">
+        </div>
 
-        <label for="prenom">Prénom :</label><br>
-        <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($professeur['prenom']) ?>" required><br><br>
+        <div class="mb-3">
+            <label for="grade" class="form-label">Grade :</label>
+            <input type="text" id="grade" name="grade" value="<?= htmlspecialchars($professeur['grade']) ?>" class="form-control">
+        </div>
 
-        <label for="grade">Grade :</label><br>
-        <input type="text" id="grade" name="grade" value="<?= htmlspecialchars($professeur['grade']) ?>"><br><br>
+        <div class="mb-3">
+            <label for="code_etablissement" class="form-label">Code établissement :</label>
+            <select id="code_etablissement" name="code_etablissement" required class="form-select">
+                <option value="">-- Sélectionnez un établissement --</option>
+                <?php foreach ($etablissements as $etablissement): ?>
+                    <option value="<?= htmlspecialchars($etablissement['code_etablissement']) ?>" <?= $etablissement['code_etablissement'] == $professeur['code_etablissement'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($etablissement['code_etablissement']) ?> - <?= htmlspecialchars($etablissement['nom_etablissement']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-        <label for="code_etablissement">Code établissement :</label><br>
-        <select id="code_etablissement" name="code_etablissement" required>
-            <option value="">-- Sélectionnez un établissement --</option>
-            <?php foreach ($etablissements as $etablissement): ?>
-                <option value="<?= htmlspecialchars($etablissement['code_etablissement']) ?>" <?= $etablissement['code_etablissement'] == $professeur['code_etablissement'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($etablissement['code_etablissement']) ?> - <?= htmlspecialchars($etablissement['nom_etablissement']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br><br>
-
-        <button type="submit">Mettre à jour</button>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
     </form>
 
-    <p><a href="index.php?action=listProfesseurs">← Retour à la liste</a></p>
+    <p class="mt-3"><a href="index.php?action=listProfesseurs" class="btn btn-secondary">← Retour à la liste</a></p>
+</div>
 
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<?php include __DIR__ . '/../../includes/footer.php'; ?>
